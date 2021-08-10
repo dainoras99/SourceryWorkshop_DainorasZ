@@ -8,7 +8,7 @@ exports.DuckDuckLandingPage = class DuckDuckLandingPage {
         await this.page.goto('https://start.duckduckgo.com/');
     }
 
-    async initiateSearch(searchCriteria) {
+    async initiateSearch(firstNumber, secondNumber) {
         await this.page.fill('#search_form_input_homepage', searchCriteria);
         await this.page.click('#search_button_homepage');
         await this.page.waitForNavigation();

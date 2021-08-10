@@ -7,7 +7,7 @@ const config = {
       viewport: { width: 1280, height: 720 },
       screenshot: 'only-on-failure',
       launchOptions: {
-          slowMo: 2000,
+          slowMo: 200,
       },
     },
   };
