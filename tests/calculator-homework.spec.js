@@ -10,7 +10,7 @@ test.describe('', () => {
 
     test.beforeEach(async () => {
         await calculatorPage.goto();
-        await calculatorPage.selectBuild('3'); // sitoje vietoje selectint build'a (name)
+        await calculatorPage.selectBuild('Prototype'); // sitoje vietoje selectint build'a (name)
     });
 
     test('Test to check if BasicCalculator page is loading', async () => {
@@ -30,7 +30,7 @@ test.describe('', () => {
         expect(resultOfAdding).toEqual(firstNumber + secondNumber);
     });
 
-    test ('Test to check if Subtract operation is working', async () => {
+    test.only('Test to check if Subtract operation is working', async () => { 
         const firstNumber = 8.8;
         const secondNumber = 4;
         await calculatorPage.calculateFunction(firstNumber, secondNumber, 'Subtract');
@@ -46,7 +46,7 @@ test.describe('', () => {
         expect(resultOfAdding).toEqual(firstNumber * secondNumber);
     });
 
-    test('Test to check if Divide operation is working', async () => {
+    test('Test to check if Divide operation is working', async () => { 
         const firstNumber = 12;
         const secondNumber = 2.5;
         await calculatorPage.calculateFunction(firstNumber, secondNumber, 'Divide');
@@ -55,7 +55,7 @@ test.describe('', () => {
     });
 
 
-    test('Test to check if Concatenate operation is working', async () => {
+    test.only('Test to check if Concatenate operation is working', async () => { 
         const firstTextNumber = '12';
         const secondTextNumber = '13';
         await calculatorPage.calculateFunction(firstTextNumber, secondTextNumber, 'Concatenate');
@@ -63,7 +63,7 @@ test.describe('', () => {
         expect(resultOfAdding).toEqual(parseInt(firstTextNumber + secondTextNumber));
     });
 
-    test('Test to check Integers only funcionality when checked with add operation', async () => {
+    test.only('Test to check Integers only checkbox funcionality (when checked) with add operation', async () => { 
         const firstNumber = 4.5;
         const secondNumber = 2.2;
         await calculatorPage.calculateFunction(firstNumber, secondNumber, 'Add');
@@ -79,7 +79,7 @@ test.describe('', () => {
         expect(resultField).toBeNaN();
     });
 
-    test('Test to check Integers only checkbox visibility on concatenate operation', async () => {
+    test.only('Test to check Integers only checkbox visibility on concatenate operation', async () => { 
         await calculatorPage.selectOperationType('Concatenate');
         const isVisible = await page.$('[disabled][hidden]');
         expect(isVisible).toBeTruthy();
@@ -90,7 +90,7 @@ test.describe('', () => {
         expect(isDisabled).toBeNull();
     });
 
-    test('Test to check if error is visible when dividing by zero', async () => {
+    test.only('Test to check if error is visible when dividing by zero', async () => { 
         await calculatorPage.calculateFunction(4, 0, 'Divide');
         const isErrorVisible = await page.isVisible('#errorMsgField');
         expect(isErrorVisible).toBe(true);
