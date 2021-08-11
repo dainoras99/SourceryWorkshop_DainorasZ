@@ -5,18 +5,14 @@ exports.BasicCalculatorPage = class BasicCalculatorPage {
         this.page = page;
     }
 
+    
+
     async goto() {
         await this.page.goto('https://testsheepnz.github.io/BasicCalculator');
     }
 
     async selectOperationType(operationName) {
-        const operations = await this.page.evaluate(() =>
-            Array.from(document.querySelectorAll('#selectOperationDropdown > option'),
-                operation => operation.textContent));
-
-        for (let i = 0; i < operations.length; i++)
-            if (operations[i] === operationName)
-                await this.page.selectOption('select[name="selectOperation"]', i.toString());
+        await this.page.selectOption('#selectOperationDropdown', `${operationName}`);
     }
 
     async calculateNumbers(firstNumber, secondNumber) {
@@ -35,12 +31,6 @@ exports.BasicCalculatorPage = class BasicCalculatorPage {
     }
 
     async selectBuild(buildName) {
-        const buildNames = await this.page.evaluate(() =>
-            Array.from(document.querySelectorAll('#selectBuild > option'),
-                build => build.textContent));
-
-        for (let i = 0; i < buildNames.length; i++)
-            if (buildNames[i] === buildName)
-                await this.page.selectOption('select[name="selectBuild"]', i.toString());
+        await this.page.selectOption('#selectBuild', `${buildName}`);
     }
 }
